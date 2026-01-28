@@ -90,17 +90,50 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "name": "RouteLogin",
+          "pattern": "",
           "target": [
-            "TargetView1"
+            "TargetLogin"
+          ]
+        },
+        {
+          "name": "RouteDashboard",
+          "pattern": "dashboard",
+          "target": [
+            "TargetDashboard"
+          ]
+        },
+        {
+          "name": "RouteIncidents",
+          "pattern": "incidents",
+          "target": [
+            "TargetIncidents"
+          ]
+        },
+        {
+          "name": "RouteRisks",
+          "pattern": "risks",
+          "target": [
+            "TargetRisks"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "TargetLogin": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "TargetDashboard": {
+          "id": "Dashboard",
+          "name": "Dashboard"
+        },
+        "TargetIncidents": {
+          "id": "Incidents",
+          "name": "Incidents"
+        },
+        "TargetRisks": {
+          "id": "Risks",
+          "name": "Risks"
         }
       }
     },

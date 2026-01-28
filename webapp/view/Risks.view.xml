@@ -1,0 +1,35 @@
+<mvc:View controllerName="ehsm.controller.Risks"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page title="Risk Assessment" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <Table id="risksTable" items="{path: '/RiskSet'}" growing="true" growingThreshold="20" class="sapUiSmallMargin">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Risks" level="H2"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="Risk ID"/></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Description"/></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Category"/></Column>
+                    <Column><Text text="Severity"/></Column>
+                    <Column><Text text="Likelihood"/></Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true"><Text text="Mitigation"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{RiskId}"/>
+                            <Text text="{RiskDescription}"/>
+                            <Text text="{RiskCategory}"/>
+                            <ObjectStatus text="{RiskSeverity}" state="{= ${RiskSeverity} === 'High' ? 'Error' : (${RiskSeverity} === 'Medium' ? 'Warning' : 'Success')}"/>
+                            <Text text="{Likelihood}"/>
+                            <Text text="{MitigationMeasures}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

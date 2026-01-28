@@ -1,0 +1,29 @@
+<mvc:View controllerName="ehsm.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.f">
+    <Page title="Safety Engineer Dashboard" class="dashboardPage">
+        <headerContent>
+             <Button icon="sap-icon://log" type="Transparent" press=".onLogoutPress" tooltip="Logout"/>
+        </headerContent>
+        <content>
+            <VBox class="sapUiLargeMargin">
+                <Title text="Overview" titleStyle="H2" class="sapUiMediumMarginBottom"/>
+                <layout:Grid defaultSpan="L6 M6 S12" hSpacing="1">
+                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop dashboardTile" header="Incident Management" subheader="Track and Report Incidents" press=".onIncidentTilePress" frameType="TwoByOne">
+                        <TileContent footer="Active Incidents">
+                            <NumericContent value="12" icon="sap-icon://alert" valueColor="Error"/>
+                        </TileContent>
+                    </GenericTile>
+                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop dashboardTile" header="Risk Assessment" subheader="Monitor and Mitigate Risks" press=".onRiskTilePress" frameType="TwoByOne">
+                         <TileContent footer="Analyzed Risks">
+                            <NumericContent value="5" icon="sap-icon://physical-activity" valueColor="Critical"/>
+                        </TileContent>
+                    </GenericTile>
+                </layout:Grid>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
