@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connection Tester</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        #output {
+            background: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Backend Connection Tester</h1>
+    <p>Click the button to try fetch data directly from SAP:</p>
+    <button onclick="testConnection()">Test Connection</button>
+
+    <div id="output">Waiting...</div>
+
+    <script>
+        function testConnection() {
+            var output = document.getElementById("output");
+            output.innerHTML = "Fetching...";
+
+            // This URL matches exactly what UI5 tries to call
+            var url = "/sap/opu/odata/sap/Z_EHSM_SRV/incidentSet?$format=json";
+
+            fetch(url)
+                .then(response => {
+                    output.innerHTML += "\nStatus Code: " + response.status;
+                    if (!response.ok) {
+                        throw new Error("HTTP Status " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    output.innerHTML += "\n\n<span class='success'>SUCCESS!</span>";
+                    output.innerHTML += "\nData Received: " + JSON.stringify(data, null, 2);
+                    alert("SUCCESS! Data flow is working.");
+                })
+                .catch(error => {
+                    output.innerHTML += "\n\n<span class='error'>FAILED!</span>";
+                    output.innerHTML += "\nError: " + error.message;
+                    alert("FAILED! " + error.message);
+                });
+        }
+    </script>
+</body>
+
+</html>

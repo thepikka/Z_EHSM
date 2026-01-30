@@ -7,10 +7,12 @@ sap.ui.define([
 
     return Controller.extend("ehsm.controller.Login", {
         onInit: function () {
+            alert("Login Controller INIT: Code Is Fresh!");
             console.log("Login Controller Loaded");
         },
 
         onLoginPress: function () {
+            alert("Login Button Pressed - Code is UPDATED!");
             var oUsername = this.getView().byId("usernameInput").getValue();
             var oPassword = this.getView().byId("passwordInput").getValue();
 

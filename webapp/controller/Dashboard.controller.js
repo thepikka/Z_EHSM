@@ -10,11 +10,15 @@ sap.ui.define([
             },
 
             onIncidentTilePress: function () {
+                alert("Dashboard: Navigating to Incidents...");
+                console.log("Navigating to Incidents");
+                MessageToast.show("Navigating to Incidents...");
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("RouteIncidents");
             },
 
             onRiskTilePress: function () {
+                console.log("Navigating to Risks");
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("RouteRisks");
             },

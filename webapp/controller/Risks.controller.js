@@ -7,6 +7,7 @@ sap.ui.define([
 
         return Controller.extend("ehsm.controller.Risks", {
             onInit: function () {
+                console.log("Risks Controller Initialized");
             },
 
             onNavBack: function () {
