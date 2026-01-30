@@ -8,12 +8,12 @@ sap.ui.define([
 
         return Controller.extend("ehsm.controller.Incidents", {
             onInit: function () {
-                alert("Incidents Controller: INITIALIZED");
                 console.log("Incidents Controller Initialized");
 
                 var oModel = this.getOwnerComponent().getModel();
                 if (!oModel) {
                     MessageToast.show("Error: OData Model not found!");
+                    console.error("OData Model not available");
                     return;
                 }
 
