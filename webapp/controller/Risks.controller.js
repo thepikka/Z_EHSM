@@ -21,7 +21,8 @@ sap.ui.define([
 
                 MessageToast.show("Fetching Risks from Backend...");
 
-                var sEmployeeId = localStorage.getItem("EmployeeId") || "00000001";
+                var sEmployeeId = (localStorage.getItem("EmployeeId") || "00000001").replace(/\s/g, "");
+                console.log("Using EmployeeId for filter: [" + sEmployeeId + "]");
                 var oFilter = new Filter("EmployeeId", FilterOperator.EQ, sEmployeeId);
 
                 // Update table binding to include filter

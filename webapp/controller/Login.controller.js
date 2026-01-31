@@ -15,8 +15,10 @@ sap.ui.define([
             var oPassword = this.getView().byId("passwordInput").getValue();
 
             if (oUsername && oPassword) {
-                // Store in localStorage for dynamic filtering
-                localStorage.setItem("EmployeeId", oUsername);
+                // Strip ALL whitespace characters to avoid maxlength violations
+                var sTrimmedUser = oUsername.replace(/\s/g, "");
+                console.log("Storing EmployeeId: [" + sTrimmedUser + "]");
+                localStorage.setItem("EmployeeId", sTrimmedUser);
 
                 // Navigate to Dashboard
                 var oRouter = UIComponent.getRouterFor(this);
