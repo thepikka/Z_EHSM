@@ -1,9 +1,11 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ],
-    function (Controller, History, MessageToast) {
+    function (Controller, History, MessageToast, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("ehsm.controller.Incidents", {
@@ -19,8 +21,21 @@ sap.ui.define([
 
                 MessageToast.show("Fetching Incidents from Backend...");
 
-                // Explicitly read to test connection
+                var sEmployeeId = localStorage.getItem("EmployeeId") || "00000001";
+                var oFilter = new Filter("EmployeeId", FilterOperator.EQ, sEmployeeId);
+
+                // Update table binding to include filter
+                var oTable = this.getView().byId("incidentsTable");
+                if (oTable) {
+                    var oBinding = oTable.getBinding("items");
+                    if (oBinding) {
+                        oBinding.filter([oFilter]);
+                    }
+                }
+
+                // Explicitly read to test connection (with filter)
                 oModel.read("/incidentSet", {
+                    filters: [oFilter],
                     success: function (oData) {
                         MessageToast.show("Success! Fetched " + oData.results.length + " incidents.");
                         console.log("Incidents fetched:", oData);

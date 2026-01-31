@@ -3,7 +3,13 @@
   "sap.app": {
     "id": "ehsm",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [
+        "en"
+      ],
+      "fallbackLocale": "en"
+    },
     "applicationVersion": {
       "version": "0.0.1"
     },
@@ -20,8 +26,6 @@
         "uri": "/sap/opu/odata/sap/Z_EHSM_SRV/",
         "type": "OData",
         "settings": {
-          "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
       }
@@ -69,8 +73,9 @@
       },
       "": {
         "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
+        "settings": {
+          "useBatch": false
+        }
       }
     },
     "resources": {

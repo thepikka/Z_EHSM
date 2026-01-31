@@ -15,6 +15,9 @@ sap.ui.define([
             var oPassword = this.getView().byId("passwordInput").getValue();
 
             if (oUsername && oPassword) {
+                // Store in localStorage for dynamic filtering
+                localStorage.setItem("EmployeeId", oUsername);
+
                 // Navigate to Dashboard
                 var oRouter = UIComponent.getRouterFor(this);
                 oRouter.navTo("RouteDashboard");
