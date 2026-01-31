@@ -11,18 +11,24 @@ sap.ui.define([
         return Controller.extend("ehsm.controller.Risks", {
             onInit: function () {
                 console.log("Risks Controller Initialized");
+                var oRouter = this.getOwnerComponent().getRouter();
+                oRouter.getRoute("RouteRisks").attachMatched(this._onRouteMatched, this);
+            },
 
+            _onRouteMatched: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 if (!oModel) {
-                    MessageToast.show("Error: OData Model not found!");
                     console.error("OData Model not available");
                     return;
                 }
 
-                MessageToast.show("Fetching Risks from Backend...");
+                MessageToast.show("Refreshing Risks Data...");
 
-                var sEmployeeId = (localStorage.getItem("EmployeeId") || "00000001").replace(/\s/g, "");
-                console.log("Using EmployeeId for filter: [" + sEmployeeId + "]");
+                // Get ID and auto-pad it to 8 digits (SAP standard Alpha format)
+                var sRawId = (localStorage.getItem("EmployeeId") || "00000001").replace(/\s/g, "");
+                var sEmployeeId = sRawId.padStart(8, '0');
+
+                console.log("Filtering risks for EmployeeId: [" + sEmployeeId + "]");
                 var oFilter = new Filter("EmployeeId", FilterOperator.EQ, sEmployeeId);
 
                 // Update table binding to include filter
@@ -31,25 +37,22 @@ sap.ui.define([
                     var oBinding = oTable.getBinding("items");
                     if (oBinding) {
                         oBinding.filter([oFilter]);
+                    } else {
+                        console.warn("Table binding not found for risksTable");
                     }
                 }
 
-                // Explicitly read to test connection (with filter)
+                // Explicitly read to verify result count
                 oModel.read("/RiskSet", {
                     filters: [oFilter],
                     success: function (oData) {
-                        MessageToast.show("Success! Fetched " + oData.results.length + " risks.");
-                        console.log("Risks fetched:", oData);
+                        var iCount = oData.results ? oData.results.length : 0;
+                        MessageToast.show("Found " + iCount + " risks for user " + sEmployeeId);
+                        console.log("Risks fetched (" + iCount + "):", oData);
                     },
                     error: function (oError) {
-                        MessageToast.show("Failed to fetch data. Check Network tab.");
                         console.error("Read failed:", oError);
-                        try {
-                            var sError = JSON.parse(oError.responseText).error.message.value;
-                            MessageToast.show("Error: " + sError);
-                        } catch (e) {
-                            // ignore parsing error
-                        }
+                        MessageToast.show("Backend error: " + (oError.statusText || "Bad Request"));
                     }
                 });
             },
