@@ -6,7 +6,7 @@
         title="Safety Engineer Portal"
         secondTitle="EHSM"
         showLogout="true"
-        showNotifications="true"
+        showNotifications="false"
         logout=".onLogout"
         profilePress=".onProfilePress">
         <f:profile>

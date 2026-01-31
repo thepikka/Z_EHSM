@@ -6,9 +6,17 @@
 }
 
 @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .loginFooterText {
@@ -33,16 +41,20 @@
 
 /* Titles */
 .loginTitle {
-    color: #333 !important;
+    color: #1a2a6c !important;
+    /* Vibrant Deep Blue */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     text-align: center;
+    font-size: 2.2rem !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .loginSubtitle {
-    color: #666 !important;
-    font-size: 1.1rem !important;
+    color: #555 !important;
+    font-size: 1rem !important;
     text-align: center;
+    font-weight: 500;
 }
 
 /* Inputs */
@@ -72,8 +84,9 @@
 }
 
 .loginButton:hover .sapMBtnInner {
-    background-position: right center; /* change the direction of the change here */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    background-position: right center;
+    /* change the direction of the change here */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Dashboard Tiles */
@@ -81,12 +94,12 @@
     transition: all 0.3s ease;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dashboardTile:hover {
     transform: scale(1.03);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .dashboardPage {
