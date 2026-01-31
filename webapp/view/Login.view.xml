@@ -4,28 +4,34 @@
     xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
     xmlns:f="sap.f">
-    <Page id="loginPage" showHeader="false" class="sapUiContentPadding loginPageBackground">
+    <Page id="loginPage" showHeader="false" class="loginPageBackground">
         <content>
-            <VBox class="loginContainer" justifyContent="Center" alignItems="Center" height="100%">
-                <VBox class="loginCard sapUiMediumMargin" width="400px">
-                    <items>
-                        <Title text="Safety Engineer Portal" titleStyle="H1" class="loginTitle sapUiTinyMarginBottom"/>
-                        <Text text="Secure Access" class="loginSubtitle sapUiSmallMarginBottom"/>
-                        
-                        <VBox class="sapUiSmallMarginTop">
-                            <Label text="Employee ID" labelFor="usernameInput" design="Bold"/>
-                            <Input id="usernameInput" placeholder="Enter your Employee ID" width="100%" class="loginInput"/>
-                        </VBox>
+            <FlexBox direction="Column" alignItems="Center" justifyContent="Center" height="100%">
+                <VBox class="loginCard sapUiMediumMargin" width="450px" alignItems="Center">
+                    <core:Icon src="sap-icon://customer" size="4rem" color="#1a2a6c" class="sapUiMediumMarginBottom"/>
+                    <Title text="Safety Engineer Portal" titleStyle="H1" class="loginTitle sapUiTinyMarginBottom"/>
+                    <Text text="Enter your credentials to access the portal" class="loginSubtitle sapUiSmallMarginBottom"/>
+                    
+                    <VBox width="100%" class="sapUiSmallMarginTop">
+                        <Label text="Employee ID" labelFor="usernameInput" design="Bold"/>
+                        <Input id="usernameInput" placeholder="e.g. 00000001" width="100%" class="loginInput">
+                            <layoutData>
+                                <FlexItemData growFactor="1"/>
+                            </layoutData>
+                        </Input>
+                    </VBox>
 
-                        <VBox class="sapUiSmallMarginTop">
-                            <Label text="Password" labelFor="passwordInput" design="Bold"/>
-                            <Input id="passwordInput" type="Password" placeholder="Enter your Password" width="100%" class="loginInput"/>
-                        </VBox>
+                    <VBox width="100%" class="sapUiSmallMarginTop">
+                        <Label text="Password" labelFor="passwordInput" design="Bold"/>
+                        <Input id="passwordInput" type="Password" placeholder="••••••••" width="100%" class="loginInput"/>
+                    </VBox>
 
-                        <Button text="Login" type="Emphasized" width="100%" press=".onLoginPress" class="sapUiMediumMarginTop loginButton"/>
-                    </items>
+                    <Button text="Sign In" type="Emphasized" width="100%" press=".onLoginPress" class="sapUiLargeMarginTop loginButton"/>
+                    
+                    <Link text="Forgot Password?" class="sapUiSmallMarginTop" subtle="true"/>
                 </VBox>
-            </VBox>
+                <Text text="© 2026 EHSM Inc. All rights reserved." class="loginFooterText sapUiMediumMarginTop"/>
+            </FlexBox>
         </content>
     </Page>
 </mvc:View>

@@ -125,6 +125,13 @@
           "target": [
             "TargetRisks"
           ]
+        },
+        {
+          "name": "RouteProfile",
+          "pattern": "profile",
+          "target": [
+            "TargetProfile"
+          ]
         }
       ],
       "targets": {
@@ -143,6 +150,10 @@
         "TargetRisks": {
           "id": "Risks",
           "name": "Risks"
+        },
+        "TargetProfile": {
+          "id": "Profile",
+          "name": "Profile"
         }
       }
     },

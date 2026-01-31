@@ -57,6 +57,18 @@ sap.ui.define([
                 });
             },
 
+            onLogout: function () {
+                localStorage.removeItem("EmployeeId");
+                MessageToast.show("Logged out successfully");
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteLogin", {}, true);
+            },
+
+            onProfilePress: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteProfile");
+            },
+
             onNavBack: function () {
                 var oHistory = History.getInstance();
                 var sPreviousHash = oHistory.getPreviousHash();

@@ -1,14 +1,18 @@
 /* Global Background */
 .loginPageBackground {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 10s ease infinite;
 }
 
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+.loginFooterText {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* Login Card - Glassmorphism */

@@ -1,0 +1,40 @@
+<mvc:View controllerName="ehsm.controller.Profile"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f">
+    <Page title="User Profile" showNavButton="true" navButtonPress=".onNavBack">
+        <headerContent>
+            <core:Fragment fragmentName="ehsm.view.Header" type="XML" />
+        </headerContent>
+        <content>
+            <VBox class="sapUiMediumMargin" alignItems="Center">
+                <VBox class="loginCard" width="400px" alignItems="Center">
+                    <Avatar src="sap-icon://customer" displaySize="L" class="sapUiMediumMarginBottom" />
+                    <Title text="Employee Profile" titleStyle="H2" class="sapUiSmallMarginBottom" />
+                    
+                    <Form editable="false" layout="ResponsiveGridLayout">
+                        <formContainers>
+                            <FormContainer>
+                                <formElements>
+                                    <FormElement label="Personnel Number">
+                                        <fields>
+                                            <Text id="employeeIdText" text="" />
+                                        </fields>
+                                    </FormElement>
+                                    <FormElement label="Account Status">
+                                        <fields>
+                                            <ObjectStatus text="Active" state="Success" />
+                                        </fields>
+                                    </FormElement>
+                                </formElements>
+                            </FormContainer>
+                        </formContainers>
+                    </Form>
+
+                    <Button text="Sign Out" type="Reject" press=".onLogout" icon="sap-icon://log" class="sapUiLargeMarginTop" />
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

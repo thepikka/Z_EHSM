@@ -6,7 +6,7 @@
     xmlns:f="sap.f">
     <Page title="Safety Engineer Dashboard" class="dashboardPage">
         <headerContent>
-             <Button icon="sap-icon://log" type="Transparent" press=".onLogoutPress" tooltip="Logout"/>
+            <core:Fragment fragmentName="ehsm.view.Header" type="XML" />
         </headerContent>
         <content>
             <VBox class="sapUiLargeMargin">

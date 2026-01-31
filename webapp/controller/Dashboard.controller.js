@@ -22,10 +22,16 @@ sap.ui.define([
                 oRouter.navTo("RouteRisks");
             },
 
-            onLogoutPress: function () {
-                MessageToast.show("Logged Out");
+            onLogout: function () {
+                localStorage.removeItem("EmployeeId");
+                MessageToast.show("Logged out successfully");
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("RouteLogin");
+                oRouter.navTo("RouteLogin", {}, true);
+            },
+
+            onProfilePress: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteProfile");
             }
         });
     });
