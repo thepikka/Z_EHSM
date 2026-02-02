@@ -25,12 +25,12 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{RiskId}"/>
-                            <Text text="{RiskDescription}"/>
-                            <Text text="{RiskCategory}"/>
-                            <ObjectStatus text="{RiskSeverity}" state="{= ${RiskSeverity} === 'High' ? 'Error' : (${RiskSeverity} === 'Medium' ? 'Warning' : 'Success')}"/>
-                            <Text text="{Likelihood}"/>
-                            <Text text="{MitigationMeasures}"/>
+                            <Text text="{riskModel>RiskId}"/>
+                            <Text text="{riskModel>RiskDescription}"/>
+                            <Text text="{riskModel>RiskCategory}"/>
+                            <ObjectStatus text="{riskModel>RiskSeverity}" state="{= ${riskModel>RiskSeverity} === 'High' ? 'Error' : (${riskModel>RiskSeverity} === 'Medium' ? 'Warning' : 'Success')}"/>
+                            <Text text="{riskModel>Likelihood}"/>
+                            <Text text="{riskModel>MitigationMeasures}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

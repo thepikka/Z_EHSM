@@ -25,12 +25,12 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{IncidentId}"/>
-                            <Text text="{IncidentDescription}"/>
-                            <Text text="{IncidentCategory}"/>
-                            <ObjectStatus text="{IncidentPriority}" state="{= ${IncidentPriority} === 'High' ? 'Error' : (${IncidentPriority} === 'Medium' ? 'Warning' : 'Success')}"/>
-                            <ObjectStatus text="{IncidentStatus}" state="{= ${IncidentStatus} === 'Open' ? 'Error' : 'Success'}"/>
-                            <Text text="{path: 'IncidentDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' }}"/>
+                            <Text text="{incidentModel>IncidentId}"/>
+                            <Text text="{incidentModel>IncidentDescription}"/>
+                            <Text text="{incidentModel>IncidentCategory}"/>
+                            <ObjectStatus text="{incidentModel>IncidentPriority}" state="{= ${incidentModel>IncidentPriority} === 'High' ? 'Error' : (${incidentModel>IncidentPriority} === 'Medium' ? 'Warning' : 'Success')}"/>
+                            <ObjectStatus text="{incidentModel>IncidentStatus}" state="{= ${incidentModel>IncidentStatus} === 'Open' ? 'Error' : 'Success'}"/>
+                            <Text text="{path: 'incidentModel>IncidentDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' }}"/>
                         </cells>
                     </ColumnListItem>
                 </items>
