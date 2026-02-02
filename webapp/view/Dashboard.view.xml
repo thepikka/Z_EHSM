@@ -10,18 +10,31 @@
         </headerContent>
         <content>
             <VBox class="sapUiLargeMargin">
-                <Title text="Overview" titleStyle="H2" class="sapUiMediumMarginBottom"/>
-                <layout:Grid defaultSpan="L6 M6 S12" hSpacing="1">
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop dashboardTile" header="Incident Management" subheader="Track and Report Incidents" press=".onIncidentTilePress" frameType="TwoByOne">
-                        <TileContent footer="Active Incidents">
-                            <NumericContent value="12" icon="sap-icon://alert" valueColor="Error"/>
-                        </TileContent>
-                    </GenericTile>
-                    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop dashboardTile" header="Risk Assessment" subheader="Monitor and Mitigate Risks" press=".onRiskTilePress" frameType="TwoByOne">
-                         <TileContent footer="Analyzed Risks">
-                            <NumericContent value="5" icon="sap-icon://physical-activity" valueColor="Critical"/>
-                        </TileContent>
-                    </GenericTile>
+                <Title text="Safety Portal Management" titleStyle="H2" class="sapUiMediumMarginBottom"/>
+                <layout:Grid defaultSpan="L6 M6 S12" hSpacing="2" vSpacing="2">
+                    <f:Card class="dashboardTile" press=".onIncidentTilePress">
+                        <f:header>
+                            <f:CardHeader title="Incident Management" subtitle="Track and report workplace incidents" iconSrc="sap-icon://alert" />
+                        </f:header>
+                        <f:content>
+                            <VBox class="sapUiMediumMargin" alignItems="Center">
+                                <core:Icon src="sap-icon://warning" size="3rem" color="Critical" class="sapUiSmallMarginBottom"/>
+                                <Text text="Manage workplace safety reports and investigation status" textAlign="Center" class="customCardSubheader"/>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                    <f:Card class="dashboardTile" press=".onRiskTilePress">
+                        <f:header>
+                            <f:CardHeader title="Risk Assessment" subtitle="Evaluate and mitigate safety risks" iconSrc="sap-icon://physical-activity" />
+                        </f:header>
+                        <f:content>
+                            <VBox class="sapUiMediumMargin" alignItems="Center">
+                                <core:Icon src="sap-icon://shield" size="3rem" color="Positive" class="sapUiSmallMarginBottom"/>
+                                <Text text="Identify potential hazards and implement mitigation strategies" textAlign="Center" class="customCardSubheader"/>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
                 </layout:Grid>
             </VBox>
         </content>
