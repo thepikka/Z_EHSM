@@ -8,7 +8,7 @@
             <core:Fragment fragmentName="ehsm.view.Header" type="XML" />
         </headerContent>
         <content>
-            <Table id="incidentsTable" items="{path: 'incidentModel>/results'}" growing="true" growingThreshold="20" class="sapUiSmallMargin">
+            <Table id="incidentsTable" items="{path: '/incidentSet'}" growing="true" growingThreshold="20" class="sapUiSmallMargin">
                 <headerToolbar>
                     <OverflowToolbar>
                         <Title text="Incidents" level="H2"/>

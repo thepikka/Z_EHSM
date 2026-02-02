@@ -15,7 +15,6 @@
             <EntityType Name="incident" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="EmployeeId"/>
-                    <PropertyRef Name="IncidentId"/>
                 </Key>
                 <Property Name="EmployeeId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="IncidentId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
@@ -33,7 +32,6 @@
             <EntityType Name="Risk" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="EmployeeId"/>
-                    <PropertyRef Name="RiskId"/>
                 </Key>
                 <Property Name="EmployeeId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="RiskId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
