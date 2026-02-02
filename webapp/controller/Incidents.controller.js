@@ -38,8 +38,13 @@ sap.ui.define([
                 var oFilter = new Filter("EmployeeId", FilterOperator.EQ, sEmployeeId);
 
                 // Explicitly read data to bypass OData key uniqueing issue
+                // Optimization: Use $select to limit fields and $top to limit records (prevents 504 timeouts)
                 oModel.read("/incidentSet", {
                     filters: [oFilter],
+                    urlParameters: {
+                        "$top": 20,
+                        "$select": "IncidentId,IncidentDescription,IncidentCategory,IncidentPriority,IncidentStatus,IncidentDate"
+                    },
                     success: function (oData) {
                         var aResults = oData.results || [];
                         oIncidentModel.setData({ results: aResults });

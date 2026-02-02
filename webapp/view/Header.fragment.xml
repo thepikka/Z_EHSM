@@ -5,10 +5,9 @@
     <f:ShellBar
         title="Safety Engineer Portal"
         secondTitle="EHSM"
-        showNotifications="false"
-        profilePress=".onProfilePress">
+        showNotifications="false">
         <f:profile>
-            <Avatar src="sap-icon://customer" tooltip="User Profile" />
+            <Avatar src="sap-icon://customer" tooltip="User Profile" press=".onProfilePress" displaySize="XS" />
         </f:profile>
     </f:ShellBar>
 </core:FragmentDefinition>
