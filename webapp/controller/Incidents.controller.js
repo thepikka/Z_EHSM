@@ -3,9 +3,10 @@ sap.ui.define([
     "sap/ui/core/routing/History",
     "sap/m/MessageToast",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/json/JSONModel"
 ],
-    function (Controller, History, MessageToast, Filter, FilterOperator) {
+    function (Controller, History, MessageToast, Filter, FilterOperator, JSONModel) {
         "use strict";
 
         return Controller.extend("ehsm.controller.Incidents", {
@@ -13,10 +14,15 @@ sap.ui.define([
                 console.log("Incidents Controller Initialized");
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.getRoute("RouteIncidents").attachMatched(this._onRouteMatched, this);
+
+                // Initialize local model to bypass OData deduplication
+                this.getView().setModel(new JSONModel({ results: [] }), "incidentModel");
             },
 
             _onRouteMatched: function () {
                 var oModel = this.getOwnerComponent().getModel();
+                var oIncidentModel = this.getView().getModel("incidentModel");
+
                 if (!oModel) {
                     console.error("OData Model not available");
                     return;
@@ -31,24 +37,15 @@ sap.ui.define([
                 console.log("Filtering incidents for EmployeeId: [" + sEmployeeId + "]");
                 var oFilter = new Filter("EmployeeId", FilterOperator.EQ, sEmployeeId);
 
-                // Update table binding to include filter
-                var oTable = this.getView().byId("incidentsTable");
-                if (oTable) {
-                    var oBinding = oTable.getBinding("items");
-                    if (oBinding) {
-                        oBinding.filter([oFilter]);
-                    } else {
-                        console.warn("Table binding not found for incidentsTable");
-                    }
-                }
-
-                // Explicitly read to verify result count
+                // Explicitly read data to bypass OData key uniqueing issue
                 oModel.read("/incidentSet", {
                     filters: [oFilter],
                     success: function (oData) {
-                        var iCount = oData.results ? oData.results.length : 0;
-                        MessageToast.show("Found " + iCount + " incidents for user " + sEmployeeId);
-                        console.log("Incidents fetched (" + iCount + "):", oData);
+                        var aResults = oData.results || [];
+                        oIncidentModel.setData({ results: aResults });
+
+                        MessageToast.show("Found " + aResults.length + " incidents");
+                        console.log("Incidents fetched:", aResults);
                     },
                     error: function (oError) {
                         console.error("Read failed:", oError);

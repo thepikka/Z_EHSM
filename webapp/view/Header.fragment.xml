@@ -5,9 +5,7 @@
     <f:ShellBar
         title="Safety Engineer Portal"
         secondTitle="EHSM"
-        showLogout="true"
         showNotifications="false"
-        logout=".onLogout"
         profilePress=".onProfilePress">
         <f:profile>
             <Avatar src="sap-icon://customer" tooltip="User Profile" />

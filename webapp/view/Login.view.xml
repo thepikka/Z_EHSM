@@ -14,7 +14,7 @@
                     
                     <VBox width="100%" class="sapUiSmallMarginTop">
                         <Label text="Employee ID" labelFor="usernameInput" design="Bold"/>
-                        <Input id="usernameInput" placeholder="e.g. 00000001" width="100%" class="loginInput">
+                        <Input id="usernameInput" placeholder="e.g. 00000001" maxLength="8" width="100%" class="loginInput">
                             <layoutData>
                                 <FlexItemData growFactor="1"/>
                             </layoutData>

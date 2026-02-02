@@ -11,19 +11,44 @@ sap.ui.define([
         },
 
         onLoginPress: function () {
-            var oUsername = this.getView().byId("usernameInput").getValue();
-            var oPassword = this.getView().byId("passwordInput").getValue();
+            var oView = this.getView();
+            var oUsername = oView.byId("usernameInput").getValue();
+            var oPassword = oView.byId("passwordInput").getValue();
+            var oModel = this.getOwnerComponent().getModel();
 
             if (oUsername && oPassword) {
-                // Strip ALL whitespace characters to avoid maxlength violations
-                var sTrimmedUser = oUsername.replace(/\s/g, "");
-                console.log("Storing EmployeeId: [" + sTrimmedUser + "]");
-                localStorage.setItem("EmployeeId", sTrimmedUser);
+                // Strip ALL whitespace characters
+                var sEmployeeId = oUsername.replace(/\s/g, "").padStart(8, '0');
 
-                // Navigate to Dashboard
-                var oRouter = UIComponent.getRouterFor(this);
-                oRouter.navTo("RouteDashboard");
-                MessageToast.show("Login Successful");
+                oView.setBusy(true);
+
+                // Filter by both ID and Password for real validation
+                var aFilters = [
+                    new sap.ui.model.Filter("EmployeeId", sap.ui.model.FilterOperator.EQ, sEmployeeId),
+                    new sap.ui.model.Filter("Password", sap.ui.model.FilterOperator.EQ, oPassword)
+                ];
+
+                oModel.read("/loginSet", {
+                    filters: aFilters,
+                    success: function (oData) {
+                        oView.setBusy(false);
+                        if (oData.results && oData.results.length > 0) {
+                            console.log("Login Successful for: " + sEmployeeId);
+                            localStorage.setItem("EmployeeId", sEmployeeId);
+
+                            var oRouter = UIComponent.getRouterFor(this);
+                            oRouter.navTo("RouteDashboard");
+                            MessageToast.show("Login Successful");
+                        } else {
+                            MessageToast.show("Invalid Employee ID or Password");
+                        }
+                    }.bind(this),
+                    error: function (oError) {
+                        oView.setBusy(false);
+                        console.error("Login Check Failed:", oError);
+                        MessageToast.show("Backend Authentication Error");
+                    }
+                });
             } else {
                 MessageToast.show("Please enter username and password");
             }
