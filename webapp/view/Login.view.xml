@@ -7,10 +7,10 @@
     <Page id="loginPage" showHeader="false" class="loginPageBackground">
         <content>
             <FlexBox direction="Column" alignItems="Center" justifyContent="Center" height="100%">
-                <VBox class="loginCard sapUiMediumMargin" width="450px" alignItems="Center">
-                    <core:Icon src="sap-icon://customer" size="4rem" color="#4f46e5" class="sapUiMediumMarginBottom"/>
-                    <Title text="Safety Portal" titleStyle="H1" class="loginTitle sapUiSmallMarginBottom"/>
-                    <Text text="EHSM Engineering Management" class="loginSubtitle sapUiSmallMarginBottom"/>
+                <VBox class="loginCard sapUiMediumMargin" width="500px" alignItems="Center">
+                    <core:Icon src="sap-icon://customer" size="3.5rem" color="#1a2a6c" class="sapUiSmallMarginBottom"/>
+                    <Title text="Safety Engineer Portal" titleStyle="H1" class="loginTitle sapUiSmallMarginBottom"/>
+                    <Text text="Enter your credentials to access the portal" class="loginSubtitle sapUiSmallMarginBottom"/>
                     
                     <VBox width="100%" class="sapUiSmallMarginTop">
                         <Label text="Employee ID" labelFor="usernameInput" design="Bold"/>
