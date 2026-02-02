@@ -22,17 +22,16 @@ sap.ui.define([
 
                 oView.setBusy(true);
 
-                // Filter by both ID and Password for real validation
-                var aFilters = [
-                    new sap.ui.model.Filter("EmployeeId", sap.ui.model.FilterOperator.EQ, sEmployeeId),
-                    new sap.ui.model.Filter("Password", sap.ui.model.FilterOperator.EQ, oPassword)
-                ];
+                // Use direct entity path because GET_ENTITYSET might not be implemented
+                var sPath = oModel.createKey("/loginSet", {
+                    EmployeeId: sEmployeeId,
+                    Password: oPassword
+                });
 
-                oModel.read("/loginSet", {
-                    filters: aFilters,
+                oModel.read(sPath, {
                     success: function (oData) {
                         oView.setBusy(false);
-                        if (oData.results && oData.results.length > 0) {
+                        if (oData) {
                             console.log("Login Successful for: " + sEmployeeId);
                             localStorage.setItem("EmployeeId", sEmployeeId);
 
@@ -46,7 +45,14 @@ sap.ui.define([
                     error: function (oError) {
                         oView.setBusy(false);
                         console.error("Login Check Failed:", oError);
-                        MessageToast.show("Backend Authentication Error");
+                        // If 404 or missing, it means invalid credentials in many SAP implementations
+                        if (oError.statusCode === "404") {
+                            MessageToast.show("Invalid Employee ID or Password");
+                        } else if (oError.statusCode === "501") {
+                            MessageToast.show("Backend Error: Login logic not implemented on SAP server");
+                        } else {
+                            MessageToast.show("Backend Authentication Error");
+                        }
                     }
                 });
             } else {
